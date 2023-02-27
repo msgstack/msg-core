@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "msg-core"
+version = "0.1.0"
+description = ""
+authors = ["prd-tan-le <tan.le@paradox.ai>"]
+readme = "README.md"
+packages = [{include = "msg_core"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
