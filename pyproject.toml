@@ -3,13 +3,22 @@ name = "msg-core"
 version = "0.1.0"
 description = ""
 authors = ["prd-tan-le <tan.le@paradox.ai>"]
-readme = "README.md"
-packages = [{include = "msg_core"}]
+packages = [
+    { include = "poetry_scripts", from = "." }
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 django = "^4.1.7"
 
+[tool.poetry.scripts]
+makemigrations = "poetry_scripts.django:makemigrations"
+migrate = "poetry_scripts.django:migrate"
+qcluster = "poetry_scripts.django:qcluster"
+shell = "poetry_scripts.django:shell"
+
+server = "poetry_scripts.django:runserver"
+gunicorn = "poetry_scripts.django:gunicorn"
 
 [build-system]
 requires = ["poetry-core"]
