@@ -8,3 +8,5 @@ setuptools==67.4.0
 split-settings==1.0.0
 sqlparse==0.4.3
 wheel==0.38.4
+uuid==1.30
+django-dirtyfields==1.9.1

@@ -10,6 +10,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.10"
 django = "^4.1.7"
+uuid = "^1.30"
 
 [tool.poetry.scripts]
 makemigrations = "poetry_scripts.django:makemigrations"
