@@ -6,6 +6,10 @@ import uuid
 from django.db import models
 from dirtyfields import DirtyFieldsMixin
 
+from aicore.models.manager import BaseManager
+from ai_api.models.soft_delete import SoftDeleteModel
+from ai_api.models.timestamped import AutoTimeStampedModel, SimpleTimeStampedModel
+
 
 class BaseQueryModel(models.Model):
     @classmethod
@@ -60,4 +64,27 @@ class BaseQueryModel(models.Model):
 
 
 class UUIDModel(models.Model, DirtyFieldsMixin):
-    uuid = models.UUIDField(db_index=True, default=uuid.uuid4, )
+    uuid = models.UUIDField(db_index=True, default=uuid.uuid4, editable=False)
+    objects = BaseManager()
+
+    class Meta:
+        abstract = True
+
+    @classmethod
+    def get_by_uuid(cls, uuid=None):
+        return cls.objects.get(uuid=uuid)
+
+
+class UUIDAutoTimeStampedModel(AutoTimeStampedModel, UUIDModel):
+    class Meta:
+        abstract = True
+
+
+class UUIDSimpleTimeStampedModel(SimpleTimeStampedModel, UUIDModel):
+    class Meta:
+        abstract = True
+
+
+class UUIDSoftDeleteModel(SoftDeleteModel, UUIDModel):
+    class Meta:
+        abstract = True
